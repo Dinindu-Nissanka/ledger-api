@@ -1,0 +1,5 @@
+{
+  "name": "Ledger - Dev",
+  "port": 3000,
+  "serverUrl": "localhost"
+}

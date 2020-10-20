@@ -1,0 +1,21 @@
+{
+  "name": "ledger",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "NODE_ENV=dev nodemon --inspect=5001 src/server.js",
+    "prod": "NODE_ENV=prod nodemon --inspect=5001 src/server.js"
+  },
+  "author": "Dinindu Nissanka",
+  "license": "ISC",
+  "dependencies": {
+    "config": "^3.3.2",
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6",
+    "prettier": "^2.1.2"
+  }
+}

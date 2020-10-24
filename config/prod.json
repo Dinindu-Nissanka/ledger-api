@@ -1,9 +1,9 @@
 {
-  "name": "Ledger - Production",
-  "port": 4000,
-  "serverUrl": "localhost",
-  "logger": {
-    "level": "debug",
-    "outputFilePrefix": "application"
-  }
+    "name": "Ledger - Production",
+    "port": 4000,
+    "serverUrl": "localhost",
+    "logger": {
+        "level": "debug",
+        "outputFilePrefix": "application-prod"
+    }
 }

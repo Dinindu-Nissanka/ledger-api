@@ -1,9 +1,9 @@
 {
-  "name": "Ledger - Dev",
-  "port": 3000,
-  "serverUrl": "localhost",
-  "logger": {
-    "level": "debug",
-    "outputFilePrefix": "application"
-  }
+    "name": "Ledger - Dev",
+    "port": 3000,
+    "serverUrl": "localhost",
+    "logger": {
+        "level": "debug",
+        "outputFilePrefix": "application-dev"
+    }
 }

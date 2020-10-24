@@ -6,6 +6,8 @@
     "scripts": {
         "dev": "NODE_ENV=dev nodemon --inspect=5001 src/start.js",
         "prod": "NODE_ENV=prod nodemon --inspect=5001 src/start.js",
+        "test": "NODE_ENV=test jest",
+        "code-coverage": "NODE_ENV=test jest --coverage",
         "prettier": "prettier --write \"./**/*.{js,json}\"",
         "lint": "eslint '**/*.js' --ignore-pattern node_modules/"
     },
@@ -18,11 +20,20 @@
         "express-validator": "^6.6.1",
         "moment": "^2.29.1",
         "morgan": "^1.10.0",
+        "swagger-ui-express": "^4.1.4",
         "winston": "^3.3.3"
     },
     "devDependencies": {
         "eslint": "^7.12.0",
+        "jest": "^26.6.1",
         "nodemon": "^2.0.6",
-        "prettier": "^2.1.2"
+        "prettier": "^2.1.2",
+        "supertest": "^5.0.0"
+    },
+    "jest": {
+        "testEnvironment": "node",
+        "coveragePathIgnorePatterns": [
+            "/node_modules/"
+        ]
     }
 }

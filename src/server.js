@@ -1,33 +1,37 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const cors = require("cors");
-const config = require("config");
-const morgan = require("morgan");
+const express = require('express')
+const bodyParser = require('body-parser')
 
-const logger = require("./util/logger");
+const morgan = require('morgan')
 
-const app = express();
+const logger = require('./util/logger')
+const errorHandler = require('./middleware/errorHandler')
 
-app.use(cors());
-app.use(bodyParser.json());
+const swaggerUi = require('swagger-ui-express')
+const swaggerDocument = require('../docs/swagger.json')
+
+const app = express()
+
+app.use(bodyParser.json())
 app.use(
-  bodyParser.urlencoded({
-    extended: false,
-  })
-);
+    bodyParser.urlencoded({
+        extended: false,
+    })
+)
 
 const loggerStream = {
-  write: (text) => {
-    logger.info(text);
-  },
-};
+    write: (text) => {
+        logger.info(text)
+    },
+}
 
-app.use(morgan("combined", { stream: loggerStream }));
+app.use(morgan('combined', { stream: loggerStream }))
 
-require("./routers")(app);
+require('./routers')(app)
 
-mode = process.env.NODE_ENV || "dev";
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
-app.listen(config.get("port"), () => {
-  logger.info("Started application");
-});
+app.use((err, req, res, next) => {
+    errorHandler(err, res)
+})
+
+module.exports = app

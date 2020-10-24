@@ -1,0 +1,9 @@
+{
+    "name": "Ledger - Test",
+    "port": 5000,
+    "serverUrl": "localhost",
+    "logger": {
+        "level": "debug",
+        "outputFilePrefix": "application-test"
+    }
+}

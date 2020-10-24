@@ -1,6 +1,6 @@
 const moment = require('moment')
 
-const { BadRequestError } = require('../util/errors')
+const BadRequestError = require('../util/errors/BadRequestError')
 
 const frequencyConfig = {
     WEEKLY: {

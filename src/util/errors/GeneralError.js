@@ -1,3 +1,6 @@
+/**
+ * General error class for the application
+ */
 class GeneralError extends Error {
     constructor(message, data = null) {
         super()
@@ -6,16 +9,8 @@ class GeneralError extends Error {
     }
 
     getCode() {
-        if (this instanceof BadRequestError) {
-            return 400
-        }
         return 500
     }
 }
 
-class BadRequestError extends GeneralError {}
-
-module.exports = {
-    GeneralError,
-    BadRequestError,
-}
+module.exports = GeneralError

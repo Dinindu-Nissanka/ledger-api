@@ -1,5 +1,5 @@
 const { validationResult } = require('express-validator')
-const { BadRequestError } = require('../util/errors')
+const BadRequestError = require('../util/errors/BadRequestError')
 
 const ledgerService = require('../services/ledger.service')
 

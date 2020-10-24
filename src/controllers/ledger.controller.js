@@ -1,22 +1,43 @@
-const { validationResult } = require("express-validator");
+const { validationResult } = require('express-validator')
+const { BadRequestError } = require('../util/errors')
 
-const logger = require("../util/logger");
+const ledgerService = require('../services/ledger.service')
+
+const logger = require('../util/logger')
 
 module.exports = {
-  getLedger: async (req, res, next) => {
-    try {
-      const errors = validationResult(req);
-      if (!errors.isEmpty()) {
-        logger.error("Validation Error", errors);
-        return res.status(400).send("Missing required parameters");
-      }
+    getLedger: async (req, res, next) => {
+        try {
+            const errors = validationResult(req)
+            if (!errors.isEmpty()) {
+                logger.error('Validation Error', errors)
+                throw new BadRequestError(
+                    'Missing or invalid required parameters',
+                    errors
+                )
+            }
 
-      logger.debug("Fetched ledger details", {});
+            const {
+                start_date: startDate,
+                end_date: endDate,
+                frequency,
+                weekly_rent: weeklyRent,
+            } = req.query
 
-      return res.json({});
-    } catch (error) {
-      logger.error("Error occurred while fetching product details", error);
-      return res.status(500).send("Error occurred while processing");
-    }
-  },
-};
+            const ledger = ledgerService.getLedger({
+                startDate,
+                endDate,
+                frequency,
+                weeklyRent,
+            })
+            logger.debug('Fetched ledger details', ledger)
+            return res.json(ledger)
+        } catch (error) {
+            logger.error(
+                'Error occurred while processing ledger details',
+                error
+            )
+            next(error)
+        }
+    },
+}

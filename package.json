@@ -4,8 +4,8 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "dev": "NODE_ENV=dev nodemon --inspect=5001 src/server.js",
-        "prod": "NODE_ENV=prod nodemon --inspect=5001 src/server.js",
+        "dev": "NODE_ENV=dev nodemon --inspect=5001 src/start.js",
+        "prod": "NODE_ENV=prod nodemon --inspect=5001 src/start.js",
         "prettier": "prettier --write \"./**/*.{js,json}\"",
         "lint": "eslint '**/*.js' --ignore-pattern node_modules/"
     },
@@ -16,6 +16,7 @@
         "cors": "^2.8.5",
         "express": "^4.17.1",
         "express-validator": "^6.6.1",
+        "moment": "^2.29.1",
         "morgan": "^1.10.0",
         "winston": "^3.3.3"
     },

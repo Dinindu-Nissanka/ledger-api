@@ -1,0 +1,93 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Ledger Management System",
+        "description": "Ledger Management System API",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "tags": [
+        {
+            "name": "Ledger",
+            "description": "API for ledger in the system"
+        }
+    ],
+    "schemes": ["http"],
+    "consumes": ["application/json"],
+    "produces": ["application/json"],
+    "paths": {
+        "/v1/ledger": {
+            "get": {
+                "tags": ["Ledger"],
+                "summary": "Get ledger details",
+                "description": "Get ledger details",
+                "parameters": [
+                    {
+                        "name": "start_date",
+                        "in": "query",
+                        "description": "Start date",
+                        "type": "string",
+                        "format": "date-time",
+                        "required": true
+                    },
+                    {
+                        "name": "end_date",
+                        "in": "query",
+                        "description": "End date",
+                        "type": "string",
+                        "format": "date-time",
+                        "required": true
+                    },
+                    {
+                        "name": "frequency",
+                        "in": "query",
+                        "description": "Frequency for ledger view",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "name": "weekly_rent",
+                        "in": "query",
+                        "description": "Weekly rent of the lease",
+                        "type": "number",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/LedgerDetails"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "LedgerDetails": {
+            "type": "array",
+            "items": {
+                "properties": {
+                    "startDate": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "endDate": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "amount": {
+                        "type": "number",
+                        "format": "float"
+                    }
+                }
+            }
+        }
+    }
+}

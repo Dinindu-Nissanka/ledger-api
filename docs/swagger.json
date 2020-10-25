@@ -87,6 +87,30 @@
                         "schema": {
                             "$ref": "#/definitions/LedgerDetails"
                         }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Authentication failed. No bearer token is provided",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "403": {
+                        "description": "Authentication failed. Bearer token is invalid",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
                     }
                 }
             }
@@ -100,7 +124,7 @@
                     {
                         "name": "user",
                         "in": "body",
-                        "description": "login parameters",
+                        "description": "Login parameters",
                         "schema": {
                             "$ref": "#/definitions/UserLoginRequest"
                         }
@@ -111,6 +135,24 @@
                         "description": "OK",
                         "schema": {
                             "$ref": "#/definitions/UserLoginResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Login failed",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
                         }
                     }
                 }
@@ -142,11 +184,13 @@
             "properties": {
                 "username": {
                     "type": "string",
-                    "required": true
+                    "required": true,
+                    "example": "member"
                 },
                 "password": {
                     "type": "string",
-                    "required": true
+                    "required": true,
+                    "example": "Member@123"
                 }
             }
         },
@@ -155,6 +199,21 @@
             "properties": {
                 "token": {
                     "type": "string"
+                }
+            }
+        },
+        "ErrorResponse": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "string",
+                    "example": "error"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "date": {
+                    "type": "object"
                 }
             }
         }

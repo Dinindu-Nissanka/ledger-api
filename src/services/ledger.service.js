@@ -47,6 +47,7 @@ module.exports = {
         let tempStartDate = startDate
         let tempEndDate = startDate
 
+        // Loop while the ledger record end date is less than the provided end date
         while (
             startDate
                 .clone()
@@ -69,6 +70,7 @@ module.exports = {
             iterator++
         }
 
+        // If the last date from frequency loop is less than the provided enddate do necessary
         if (
             endDate.diff(tempEndDate.clone().subtract(1, 'days'), 'days') >= 0
         ) {

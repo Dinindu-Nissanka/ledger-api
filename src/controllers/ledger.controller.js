@@ -8,6 +8,7 @@ const logger = require('../util/logger')
 module.exports = {
     getLedger: async (req, res, next) => {
         try {
+            //Check for any validation errors from express-validator
             const errors = validationResult(req)
             if (!errors.isEmpty()) {
                 logger.error('Validation Error', errors)

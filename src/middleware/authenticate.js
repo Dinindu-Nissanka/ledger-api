@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken')
 const UnauthorizedError = require('../util/errors/UnauthorizedError')
 const ForbiddenError = require('../util/errors/ForbiddenError')
 
-const tokenSecret = 'ledgertokensecret'
+const { tokenSecret } = require('../util/constants')
 
 /**
  * Middleware to check authorization header and validate jwt token

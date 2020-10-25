@@ -15,17 +15,33 @@
         {
             "name": "Ledger",
             "description": "API for ledger in the system"
+        },
+        {
+            "name": "User",
+            "description": "API for user in the system"
         }
     ],
     "schemes": ["http"],
     "consumes": ["application/json"],
     "produces": ["application/json"],
+    "securityDefinitions": {
+        "Bearer": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    },
     "paths": {
         "/v1/ledger": {
             "get": {
                 "tags": ["Ledger"],
                 "summary": "Get ledger details",
                 "description": "Get ledger details",
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
                 "parameters": [
                     {
                         "name": "start_date",
@@ -56,6 +72,13 @@
                         "description": "Weekly rent of the lease",
                         "type": "number",
                         "required": true
+                    },
+                    {
+                        "name": "weekly_rent",
+                        "in": "query",
+                        "description": "Weekly rent of the lease",
+                        "type": "number",
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -63,6 +86,31 @@
                         "description": "OK",
                         "schema": {
                             "$ref": "#/definitions/LedgerDetails"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/user/login": {
+            "post": {
+                "tags": ["User"],
+                "summary": "User login",
+                "description": "user login",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "body",
+                        "description": "login parameters",
+                        "schema": {
+                            "$ref": "#/definitions/UserLoginRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/UserLoginResponse"
                         }
                     }
                 }
@@ -86,6 +134,27 @@
                         "type": "number",
                         "format": "float"
                     }
+                }
+            }
+        },
+        "UserLoginRequest": {
+            "type": "object",
+            "properties": {
+                "username": {
+                    "type": "string",
+                    "required": true
+                },
+                "password": {
+                    "type": "string",
+                    "required": true
+                }
+            }
+        },
+        "UserLoginResponse": {
+            "type": "object",
+            "properties": {
+                "token": {
+                    "type": "string"
                 }
             }
         }

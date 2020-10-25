@@ -3,7 +3,7 @@ const moment = require('moment')
 const ledgerService = require('../../src/services/ledger.service')
 const BadRequestError = require('../../src/util/errors/BadRequestError')
 
-describe('Get ledger details - Service layer', () => {
+describe('Get ledger details service', () => {
     /**
      * Should returns an array of ledger details
      */
